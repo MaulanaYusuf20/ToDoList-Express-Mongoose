@@ -2,11 +2,25 @@ const User = require("../model/User");
 
 module.exports = {
     getAllUser: async (req, res) => {
-        const users = await User.find();
+        try {
+            const users = await User.find();
 
-        res.status(200).json({
-            message: "Data user berhasil didapatkan",
-            data: users,
-        });
+            if (!users) {
+                return res.status(404).json({
+                    message: "Data user tidak ditemukan",
+                    data: users,
+                });
+            }
+
+            res.status(200).json({
+                message: "Data user berhasil didapatkan",
+                data: users,
+            });
+        } catch (error) {
+            res.status(500).json({
+                message: "Gagal mendapatkan data",
+                error: error.message,
+            });
+        }
     },
 };

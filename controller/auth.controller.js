@@ -50,8 +50,8 @@ module.exports = {
                 },
             });
         } catch (error) {
-            res.status(400).json({
-                message: "Email atau password salah!",
+            res.status(500).json({
+                message: "Login gagal!",
                 error: error.message,
             });
         }
@@ -90,7 +90,7 @@ module.exports = {
             });
         } catch (error) {
             res.status(500).json({
-                message: "gagal membuat user",
+                message: "Register gagal!",
                 error: error.message,
             });
         }
